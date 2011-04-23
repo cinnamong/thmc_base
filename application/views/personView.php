@@ -18,16 +18,32 @@
 				<td><?php echo $person->id; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">Name</td>
+				<td valign="top">이름</td>
 				<td><?php echo $person->name; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">Gender</td>
-				<td><?php echo strtoupper($person->gender)=='M'? 'Male':'Female' ; ?></td>
+				<td valign="top">출생연도</td>
+				<td><?php echo $person->yob; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">Date of birth (dd-mm-yyyy)</td>
-				<td><?php echo date('d-m-Y',strtotime($person->dob)); ?></td>
+				<td valign="top">백넘버</td>
+				<td><?php echo $person->back_no; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">주포지션</td>
+				<td><?php echo $person->pri_position; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">보조포지션</td>
+				<td><?php echo $person->second_position; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">공/수</td>
+				<td><?php echo $person->batting == 'R'? '우타':'좌타'; ?> / <?php echo $person->field == 'R'? '우투': '좌투'; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">특이사항</td>
+				<td><?php echo $person->description; ?></td>
 			</tr>
 		</table>
 		</div>

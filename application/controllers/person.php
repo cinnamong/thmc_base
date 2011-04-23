@@ -82,8 +82,13 @@ class Person extends Controller {
 		}else{
 			// save data
 			$person = array('name' => $this->input->post('name'),
-							'gender' => $this->input->post('gender'),
-							'dob' => date('Y-m-d', strtotime($this->input->post('dob'))));
+							'yob' => $this->input->post('yob'),
+							'back_no' => $this->input->post('back_no'),
+							'pri_position' => $this->input->post('pri_position'),
+							'second_position' => $this->input->post('second_position'),
+							'batting' => $this->input->post('batting'),
+							'field' => $this->input->post('field'),
+							'description' => $this->input->post('description'));
 			$id = $this->personModel->save($person);
 			
 			// set form input name="id"
@@ -117,8 +122,8 @@ class Person extends Controller {
 		$person = $this->personModel->get_by_id($id)->row();
 		$this->validation->id = $id;
 		$this->validation->name = $person->name;
-		$_POST['gender'] = strtoupper($person->gender);
-		$this->validation->dob = date('d-m-Y',strtotime($person->dob));
+		//$_POST['gender'] = strtoupper($person->gender);
+		//$this->validation->dob = date('d-m-Y',strtotime($person->dob));
 		
 		// set common properties
 		$data['title'] = 'Update person';
@@ -147,8 +152,13 @@ class Person extends Controller {
 			// save data
 			$id = $this->input->post('id');
 			$person = array('name' => $this->input->post('name'),
-							'gender' => $this->input->post('gender'),
-							'dob' => date('Y-m-d', strtotime($this->input->post('dob'))));
+							'yob' => $this->input->post('yob'),
+							'back_no' => $this->input->post('back_no'),
+							'pri_position' => $this->input->post('pri_position'),
+							'second_position' => $this->input->post('second_position'),
+							'batting' => $this->input->post('batting'),
+							'field' => $this->input->post('field'),
+							'description' => $this->input->post('description'));
 			$this->personModel->update($id,$person);
 			
 			// set user message
@@ -171,8 +181,13 @@ class Person extends Controller {
 	function _set_fields(){
 		$fields['id'] = 'id';
 		$fields['name'] = 'name';
-		$fields['gender'] = 'gender';
-		$fields['dob'] = 'dob';
+		$fields['yob'] = 'yob';
+		$fields['back_no'] = 'back_no';
+		$fields['pri_position'] = 'pri_position';
+		$fields['second_position'] = 'second_position';
+		$fields['batting'] = 'batting';
+		$fields['field'] = 'field';
+		$fields['description'] = 'description';
 		
 		$this->validation->set_fields($fields);
 	}
@@ -180,8 +195,8 @@ class Person extends Controller {
 	// validation rules
 	function _set_rules(){
 		$rules['name'] = 'trim|required';
-		$rules['gender'] = 'trim|required';
-		$rules['dob'] = 'trim|required|callback_valid_date';
+		$rules['name'] = 'trim|required';
+		$rules['yob'] = 'trim|required|callback_valid_date';
 		
 		$this->validation->set_rules($rules);
 		
@@ -195,7 +210,7 @@ class Person extends Controller {
 	{
 		if(!ereg("^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})$", $str))
 		{
-			$this->validation->set_message('valid_date', 'date format is not valid. dd-mm-yyyy');
+			$this->validation->set_message('valid_date', 'date format is not valid. yyyy');
 			return false;
 		}
 		else

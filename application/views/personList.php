@@ -10,7 +10,7 @@
 </head>
 <body>
 	<div class="content">
-		<h1>Simple CRUD Application</h1>
+		<h1>THMC Roaster</h1>
 		<div class="paging"><?php echo $pagination; ?></div>
 		<div class="data"><?php echo $table; ?></div>
 		<br />
