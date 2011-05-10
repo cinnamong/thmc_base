@@ -12,6 +12,7 @@ class Person extends Controller {
 		
 		// load helper
 		$this->load->helper('url');
+		$this->load->helper('form');
 		
 		// load model
 		$this->load->model('personModel','',TRUE);
@@ -37,7 +38,7 @@ class Person extends Controller {
 		// generate table data
 		$this->load->library('table');
 		$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('No', '이름', '출생연도', '백 넘버', '포지션', '백업포지션', '타격', '수비','비고');
+		$this->table->set_heading('No', '이름', '출생연도', '백 넘버', '포지션', '백업포지션', '타격', '수비','비고','');
 		$i = 0 + $offset;
 		foreach ($persons as $person){
 			$this->table->add_row(++$i, $person->name, $person->yob, $person->back_no, $person->pri_position, $person->second_position, $person->batting == 'R'? '우타' :'좌타', $person->field == 'R'? '우투':'좌투', $person->description,
@@ -115,6 +116,8 @@ class Person extends Controller {
 	}
 	
 	function update($id){
+		//load form helper
+		$this->load->helper('form');
 		// set validation properties
 		$this->_set_fields();
 		
@@ -208,7 +211,7 @@ class Person extends Controller {
 	// date_validation callback
 	function valid_date($str)
 	{
-		if(!ereg("^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})$", $str))
+		if(!ereg("^([0-9]{4})$", $str))
 		{
 			$this->validation->set_message('valid_date', 'date format is not valid. yyyy');
 			return false;
