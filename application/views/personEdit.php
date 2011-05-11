@@ -40,7 +40,7 @@
 			</tr>
 			<tr>
 				<td valign="top">주포지션 <span style="color:red;">*</span></td>
-				<td><?php echo $this->form_dropdown('pri_position', array('' => 'Select your position', 1 => 'P', 2 => 'C', 3 => '1B', 4 => '2B', 5 => '3B', 6 => 'SS', 7 => 'LF', 8 => 'CF', 9 => 'RF'),''); ?>
+				<td><input type="text" name="pri_position" class="text" value="<?php echo $this->validation->pri_position; ?>"/>
 				<?php echo $this->validation->pri_position_error; ?></td>
 			</tr>
 			<tr>
@@ -50,14 +50,14 @@
 			</tr>
 			<tr>
 				<td valign="top">공격 </td>
-				<td><input type="radio" name="batting" value="우타" <?php echo $this->validation->set_radio('batting', '우타'); ?>/> 우타
-					<input type="radio" name="batting" value="좌타" <?php echo $this->validation->set_radio('batting', '좌타'); ?>/> 좌타
+				<td><input type="radio" name="batting" value="R" <?php echo $this->validation->set_radio('batting', 'R'); ?>/> 우타
+					<input type="radio" name="batting" value="L" <?php echo $this->validation->set_radio('batting', 'L'); ?>/> 좌타
 				<?php echo $this->validation->batting_error; ?></td>
 			</tr>
 			<tr>
 				<td valign="top">수비 </td>
-				<td><input type="radio" name="field" value="우투" <?php echo $this->validation->set_radio('field', '우투'); ?>/> 우투
-					<input type="radio" name="field" value="좌투" <?php echo $this->validation->set_radio('field', '좌투'); ?>/> 좌투
+				<td><input type="radio" name="field" value="R" <?php echo $this->validation->set_radio('field', 'R'); ?>/> 우투
+					<input type="radio" name="field" value="L" <?php echo $this->validation->set_radio('field', 'L'); ?>/> 좌투
 				<?php echo $this->validation->field_error; ?></td>
 			</tr>
 			<tr>
