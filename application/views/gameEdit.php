@@ -24,46 +24,53 @@
 				<input type="hidden" name="id" value="<?php echo $this->validation->id; ?>"/>
 			</tr>
 			<tr>
-				<td valign="top">Name<span style="color:red;">*</span></td>
-				<td><input type="text" name="name" class="text" value="<?php echo $this->validation->name; ?>"/>
-				<?php echo $this->validation->name_error; ?></td>
+				<td valign="top">상대팀<span style="color:red;">*</span></td>
+				<td><input type="text" name="opponent" class="text" value="<?php echo $this->validation->opponent; ?>"/>
+				<?php echo $this->validation->opponent_error; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">Year of birth (출생년도 4자리)<span style="color:red;">*</span></td>
-				<td><input type="text" name="yob" class="text" value="<?php echo $this->validation->yob; ?>"/>
-				<?php echo $this->validation->yob_error; ?></td>
+				<td valign="top">날짜 (dd-mm-yyyy)<span style="color:red;">*</span></td>
+				<td><input type="text" name="date" onclick="displayDatePicker('date');" class="text" value="<?php echo $this->validation->date; ?>"/>
+				<a href="javascript:void(0);" onclick="displayDatePicker('date');"><img src="<?php echo base_url(); ?>style/images/calendar.png" alt="calendar" border="0"></a>
+				<?php echo $this->validation->date_error; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">백넘버 <span style="color:red;">*</span></td>
-				<td><input type="text" name="back_no" class="text" value="<?php echo $this->validation->back_no; ?>"/>
-				<?php echo $this->validation->back_no_error; ?></td>
+				<td valign="top">시간 <span style="color:red;">*</span></td>
+				<td><input type="text" name="time" class="text" value="<?php echo $this->validation->time; ?>"/>
+				<?php echo $this->validation->time_error; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">주포지션 <span style="color:red;">*</span></td>
-				<td><input type="text" name="pri_position" class="text" value="<?php echo $this->validation->pri_position; ?>"/>
-				<?php echo $this->validation->pri_position_error; ?></td>
+				<td valign="top">경기장 <span style="color:red;">*</span></td>
+				<td><input type="text" name="ballpark" class="text" value="<?php echo $this->validation->ballpark; ?>"/>
+				<?php echo $this->validation->ballpark_error; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">백업포지션 </td>
-				<td><input type="text" name="second_position" class="text" value="<?php echo $this->validation->second_position; ?>"/>
-				<?php echo $this->validation->second_position_error; ?></td>
+				<td valign="top">날씨 </td>
+				<td><input type="text" name="weather" class="text" value="<?php echo $this->validation->weather; ?>"/>
+				<?php echo $this->validation->weather_error; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">공격 </td>
-				<td><input type="radio" name="batting" value="R" <?php echo $this->validation->set_radio('batting', 'R'); ?>/> 우타
-					<input type="radio" name="batting" value="L" <?php echo $this->validation->set_radio('batting', 'L'); ?>/> 좌타
-				<?php echo $this->validation->batting_error; ?></td>
+				<td valign="top">온도 </td>
+				<td><input type="text" name="temperature" class="text" value="<?php echo $this->validation->temperature; ?>"/>
+				<?php echo $this->validation->temperature_error; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">수비 </td>
-				<td><input type="radio" name="field" value="R" <?php echo $this->validation->set_radio('field', 'R'); ?>/> 우투
-					<input type="radio" name="field" value="L" <?php echo $this->validation->set_radio('field', 'L'); ?>/> 좌투
+				<td valign="top">홈/어웨이</td>
+				<td><input type="radio" name="field" value="Visitor" <?php echo $this->validation->set_radio('field', 'Visitor'); ?>/> 어웨이
+					<input type="radio" name="field" value="Home" <?php echo $this->validation->set_radio('field', 'Home'); ?>/> 홈
 				<?php echo $this->validation->field_error; ?></td>
 			</tr>
 			<tr>
-				<td valign="top">특이사항 </td>
-				<td><input type="text" name="description" class="text" value="<?php echo $this->validation->description; ?>"/>
-				<?php echo $this->validation->description_error; ?></td>
+				<td valign="top">결과 </td>
+				<td><input type="radio" name="result" value="W" <?php echo $this->validation->set_radio('result', 'W'); ?>/> 승
+					<input type="radio" name="result" value="L" <?php echo $this->validation->set_radio('result', 'L'); ?>/> 패
+					<input type="radio" name="result" value="T" <?php echo $this->validation->set_radio('result', 'T'); ?>/> 무
+				<?php echo $this->validation->result_error; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">승점 </td>
+				<td><input type="text" name="point" class="text" value="<?php echo $this->validation->point; ?>"/>
+				<?php echo $this->validation->point_error; ?></td>
 			</tr>
 			<tr>
 				<td>&nbsp;</td>

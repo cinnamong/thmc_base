@@ -38,10 +38,10 @@ class Game extends Controller {
 		// generate table data
 		$this->load->library('table');
 		$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('No', '이름', '출생연도', '백 넘버', '포지션', '백업포지션', '타격', '수비','비고','');
+		$this->table->set_heading('Game ID', '상대팀', '날짜', '시간', '구장', '날씨', '온도', '홈/어웨이','승패','승점','');
 		$i = 0 + $offset;
 		foreach ($games as $game){
-			$this->table->add_row(++$i, $game->name, $game->yob, $game->back_no, $game->pri_position, $game->second_position, $game->batting == 'R'? '우타' :'좌타', $game->field == 'R'? '우투':'좌투', $game->description,
+			$this->table->add_row(++$i, $game->opponent, $game->date, $game->time, $game->ballpark, $game->weather, $game->temperature, $game->field == 'Visitor'? '어웨이':'홈', $game->result == 'W'? '승': ($game->result == 'L'? '패':'무'), $game->point,
 				anchor('game/view/'.$game->id,'view',array('class'=>'view')).' '.
 				anchor('game/update/'.$game->id,'update',array('class'=>'update')).' '.
 				anchor('game/delete/'.$game->id,'delete',array('class'=>'delete','onclick'=>"return confirm('Are you sure want to delete this game?')"))
@@ -82,14 +82,15 @@ class Game extends Controller {
 			$data['message'] = '';
 		}else{
 			// save data
-			$game = array('name' => $this->input->post('name'),
-							'yob' => $this->input->post('yob'),
-							'back_no' => $this->input->post('back_no'),
-							'pri_position' => $this->input->post('pri_position'),
-							'second_position' => $this->input->post('second_position'),
-							'batting' => $this->input->post('batting'),
+			$game = array('date' => $this->input->post('date'),
+							'time' => $this->input->post('time'),
+							'ballpark' => $this->input->post('ballpark'),
+							'opponent' => $this->input->post('opponent'),
+							'weather' => $this->input->post('weather'),
+							'temperature' => $this->input->post('temperature'),
 							'field' => $this->input->post('field'),
-							'description' => $this->input->post('description'));
+							'result' => $this->input->post('result'),
+							'point' => $this->input->post('point'));
 			$id = $this->gameModel->save($game);
 			
 			// set form input name="id"
@@ -124,7 +125,7 @@ class Game extends Controller {
 		// prefill form values
 		$game = $this->gameModel->get_by_id($id)->row();
 		$this->validation->id = $id;
-		$this->validation->name = $game->name;
+		$this->validation->date = date('d-m-Y',strtotime($game->date));
 		//$_POST['gender'] = strtoupper($game->gender);
 		//$this->validation->dob = date('d-m-Y',strtotime($game->dob));
 		
@@ -154,14 +155,15 @@ class Game extends Controller {
 		}else{
 			// save data
 			$id = $this->input->post('id');
-			$game = array('name' => $this->input->post('name'),
-							'yob' => $this->input->post('yob'),
-							'back_no' => $this->input->post('back_no'),
-							'pri_position' => $this->input->post('pri_position'),
-							'second_position' => $this->input->post('second_position'),
-							'batting' => $this->input->post('batting'),
+			$game = array('date' => $this->input->post('date'),
+							'time' => $this->input->post('time'),
+							'ballpark' => $this->input->post('ballpark'),
+							'opponent' => $this->input->post('opponent'),
+							'weather' => $this->input->post('weather'),
+							'temperature' => $this->input->post('temperature'),
 							'field' => $this->input->post('field'),
-							'description' => $this->input->post('description'));
+							'result' => $this->input->post('result'),
+							'point' => $this->input->post('point'));
 			$this->gameModel->update($id,$game);
 			
 			// set user message
@@ -183,23 +185,26 @@ class Game extends Controller {
 	// validation fields
 	function _set_fields(){
 		$fields['id'] = 'id';
-		$fields['name'] = 'name';
-		$fields['yob'] = 'yob';
-		$fields['back_no'] = 'back_no';
-		$fields['pri_position'] = 'pri_position';
-		$fields['second_position'] = 'second_position';
-		$fields['batting'] = 'batting';
+		$fields['date'] = 'date';
+		$fields['time'] = 'time';
+		$fields['ballpark'] = 'ballpark';
+		$fields['opponent'] = 'opponent';
+		$fields['weather'] = 'weather';
+		$fields['temperature'] = 'temperature';
 		$fields['field'] = 'field';
-		$fields['description'] = 'description';
+		$fields['result'] = 'result';
+		$fields['point'] = 'point';
 		
 		$this->validation->set_fields($fields);
 	}
 	
 	// validation rules
 	function _set_rules(){
-		$rules['name'] = 'trim|required';
-		$rules['name'] = 'trim|required';
-		$rules['yob'] = 'trim|required|callback_valid_date';
+		$rules['opponent'] = 'trim|required';
+		$rules['field'] = 'trim|required';
+		$rules['result'] = 'trim|required';
+		$rules['point'] = 'trim|required';
+		$rules['date'] = 'trim|required|callback_valid_date';
 		
 		$this->validation->set_rules($rules);
 		
@@ -211,9 +216,9 @@ class Game extends Controller {
 	// date_validation callback
 	function valid_date($str)
 	{
-		if(!ereg("^([0-9]{4})$", $str))
+		if(!ereg("^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})$", $str))
 		{
-			$this->validation->set_message('valid_date', 'date format is not valid. yyyy');
+			$this->validation->set_message('valid_date', 'date format is not valid. dd-mm-yyyy');
 			return false;
 		}
 		else
