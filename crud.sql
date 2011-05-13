@@ -2,9 +2,9 @@
 -- version 3.3.9
 -- http://www.phpmyadmin.net
 --
--- Host: localhost:3306
--- Generation Time: May 12, 2011 at 05:54 PM
--- Server version: 5.1.36
+-- Host: localhost
+-- Generation Time: May 13, 2011 at 09:04 AM
+-- Server version: 5.5.8
 -- PHP Version: 5.2.11
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -40,19 +40,19 @@ CREATE TABLE IF NOT EXISTS `game` (
   `ra` int(3) NOT NULL,
   `diff` int(3) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=7 ;
+) ENGINE=MyISAM  DEFAULT CHARSET=utf8 AUTO_INCREMENT=8 ;
 
 --
 -- Dumping data for table `game`
 --
 
 INSERT INTO `game` (`id`, `date`, `time`, `ballpark`, `opponent`, `weather`, `temperature`, `field`, `result`, `point`, `rs`, `ra`, `diff`) VALUES
-(1, '0000-00-00', '08:30:00', 'SHERY HIGH-B', '70''S', 'FAIR', '', 'Visitor', 'W', 3, 9, 5, 4),
-(2, '0000-00-00', '11:00:00', 'SHERY HIGH-A', 'B BEARS', 'FAIR', '', 'Visitor', 'W', 3, 20, 5, 15),
-(3, '0000-00-00', '14:00:00', 'SHERY HIGH-B', 'RAIZA', 'HOT', '90S', 'Visitor', 'W', 3, 11, 1, 10),
-(4, '0000-00-00', '16:00:00', 'Shery High- A', 'OC Giants', 'Fair-13 mph', '70s', 'Visitor', 'W', 3, 15, 14, 1),
-(5, '0000-00-00', '13:40:00', 'SHERY HIGH-B', '영락교회', 'WARM-10W', '85', 'Home', 'W', 3, 9, 5, 4),
-(6, '0000-00-00', '11:30:00', 'SHERY HIGH-A', '오합지존', 'FAIR', '', 'Home', 'W', 3, 15, 5, 10);
+(1, '2011-04-02', '08:30:00', 'SHERY HIGH-B', '70''S', 'FAIR', '', 'Visitor', 'W', 3, 9, 5, 4),
+(2, '2011-04-09', '11:00:00', 'SHERY HIGH-A', 'B BEARS', 'FAIR', '', 'Visitor', 'W', 3, 20, 5, 15),
+(3, '2011-04-16', '14:00:00', 'SHERY HIGH-B', 'RAIZA', 'HOT', '90S', 'Visitor', 'W', 3, 11, 1, 10),
+(4, '2011-04-23', '16:00:00', 'Shery High- A', 'OC Giants', 'Fair-13 mph', '70s', 'Visitor', 'W', 3, 15, 14, 1),
+(5, '2011-04-30', '13:40:00', 'SHERY HIGH-B', '영락교회', 'WARM-10W', '85', 'Home', 'W', 3, 9, 5, 4),
+(6, '2011-05-07', '11:30:00', 'SHERY HIGH-A', '오합지존', 'FAIR', '', 'Home', 'W', 3, 15, 5, 10);
 
 -- --------------------------------------------------------
 
@@ -133,9 +133,9 @@ CREATE TABLE IF NOT EXISTS `player_stat` (
   `lineup_no` int(11) NOT NULL,
   `player_id` int(11) NOT NULL,
   `game_id` int(11) NOT NULL,
-  `one_base` int(11) NOT NULL,
-  `two_base` int(11) NOT NULL,
-  `three_base` int(11) NOT NULL,
+  `single` int(11) NOT NULL,
+  `double` int(11) NOT NULL,
+  `triple` int(11) NOT NULL,
   `home_run` int(11) NOT NULL,
   `base_on_balls` int(11) NOT NULL,
   `hit_by_pitch` int(11) NOT NULL,
