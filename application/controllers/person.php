@@ -125,8 +125,14 @@ class Person extends Controller {
 		$person = $this->personModel->get_by_id($id)->row();
 		$this->validation->id = $id;
 		$this->validation->name = $person->name;
+		$this->validation->back_no = $person->back_no;
+		$this->validation->pri_position = $person->pri_position;
+		$this->validation->second_position = $person->second_position;
+		$this->validation->batting = $person->batting;
+		$this->validation->field = $person->field;
+		$this->validation->description = $person->description;
 		//$_POST['gender'] = strtoupper($person->gender);
-		//$this->validation->dob = date('d-m-Y',strtotime($person->dob));
+		$this->validation->yob = date('Y',strtotime($person->yob));
 		
 		// set common properties
 		$data['title'] = 'Update person';

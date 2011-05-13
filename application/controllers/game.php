@@ -144,7 +144,19 @@ class Game extends Controller {
 		// prefill form values
 		$game = $this->gameModel->get_by_id($id)->row();
 		$this->validation->id = $id;
-		$this->validation->date = date('d-m-Y',strtotime($game->date));
+		$this->validation->time = $game->time;
+		$this->validation->ballpark = $game->ballpark;
+		$this->validation->opponent = $game->opponent;
+		$this->validation->weather = $game->weather;
+		$this->validation->temperature = $game->temperature;
+		$this->validation->field = $game->field;
+		$this->validation->result = $game->result;
+		$this->validation->point = $game->point;
+		$this->validation->rs = $game->rs;
+		$this->validation->ra = $game->ra;
+		$this->validation->diff = $game->diff;
+		
+		$this->validation->date = date('Y-m-d',strtotime($game->date));
 		//$_POST['gender'] = strtoupper($game->gender);
 		//$this->validation->dob = date('d-m-Y',strtotime($game->dob));
 		

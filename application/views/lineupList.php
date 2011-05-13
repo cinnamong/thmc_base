@@ -3,17 +3,17 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=iso-8859-1" />
 
-<title>2011 Game Lists</title>
+<title>2011 Lineup Lists</title>
 
 <link href="<?php echo base_url(); ?>style/style.css" rel="stylesheet" type="text/css" />
 
 </head>
 <body>
 	<div class="header">
-		<h1> 또감사 교회 야구단</h1>
+		<img src="/style/images/thmc_baseball_logo.gif" alt="thmc baseball" />
 	</div>
 	<div class="content">
-		<div class="data gamedata">
+		<div class="data lineupdata">
 			<h1>2011 Season Summary</h1>
 			<table>
 				<tbody>
@@ -27,23 +27,23 @@
 					<th valigh="top">게임당실점</th>
 				</tr>
 				<tr>
-					<td valigh="top"><?php echo $total_game_count; ?></td>
+					<td valigh="top"><?php echo $total_lineup_count; ?></td>
 					<td valigh="top"><?php echo $total_rs; ?></td>
 					<td valigh="top"><?php echo $total_ra; ?></td>
 					<td valigh="top"><?php echo $total_diff; ?></td>
 					<td valigh="top"><?php echo $total_point; ?></td>
-					<td valigh="top"><?php echo sprintf("%01.2f", $rs_game); ?></td>
-					<td valigh="top"><?php echo sprintf("%01.2f", $ra_game); ?></td>					
+					<td valigh="top"><?php echo sprintf("%01.2f", $rs_lineup); ?></td>
+					<td valigh="top"><?php echo sprintf("%01.2f", $ra_lineup); ?></td>					
 				</tr>
 				</tbody>
 			</table>
 		</div>
 		<br />
-		<h1>2011 Game List</h1>
+		<h1>2011 Lineup List</h1>
 		<div class="paging"><?php echo $pagination; ?></div>
-		<div class="data gamedata"><?php echo $table; ?></div>
+		<div class="data lineupdata"><?php echo $table; ?></div>
 		<br />
-		<?php echo anchor('game/add/','add new data',array('class'=>'add')); ?>
+		<?php echo anchor('lineup/add/','add new data',array('class'=>'add')); ?>
 		<br />
 	</div>
 </body>

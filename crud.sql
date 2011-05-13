@@ -2,9 +2,9 @@
 -- version 3.3.9
 -- http://www.phpmyadmin.net
 --
--- Host: localhost
--- Generation Time: May 13, 2011 at 09:04 AM
--- Server version: 5.5.8
+-- Host: localhost:3306
+-- Generation Time: May 13, 2011 at 04:46 PM
+-- Server version: 5.1.36
 -- PHP Version: 5.2.11
 
 SET SQL_MODE="NO_AUTO_VALUE_ON_ZERO";
@@ -75,6 +75,30 @@ CREATE TABLE IF NOT EXISTS `game_stat` (
 
 --
 -- Dumping data for table `game_stat`
+--
+
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `lineup`
+--
+
+CREATE TABLE IF NOT EXISTS `lineup` (
+  `id` int(5) NOT NULL AUTO_INCREMENT,
+  `order_no` int(2) NOT NULL,
+  `game_id` int(11) NOT NULL,
+  `opponent` varchar(255) NOT NULL,
+  `date` date NOT NULL,
+  `player_id` int(3) NOT NULL,
+  `player_name` varchar(255) NOT NULL,
+  `position` varchar(10) NOT NULL,
+  `back_no` int(3) NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
+
+--
+-- Dumping data for table `lineup`
 --
 
 
