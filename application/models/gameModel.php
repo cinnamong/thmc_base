@@ -26,7 +26,23 @@ class GameModel extends Model {
 		return $this->db->get($this->tbl_game);
 	}
 
+	function get_total_rs(){
+		$this->db->select_sum('rs');
+		return $this->db->get('game');
+	}
 
+	function get_total_ra(){
+		$this->db->select_sum('ra');
+		$query = $this->db->get('game');
+		return $query;
+	}
+
+	function get_total_point(){
+		$this->db->select_sum('point');
+		$query = $this->db->get('game');
+		return $query;
+	}
+			
 	function save($game){
 		$this->db->insert($this->tbl_game, $game);
 		return $this->db->insert_id();

@@ -9,7 +9,7 @@ var monthArrayMed = new Array('Jan', 'Feb', 'Mar', 'Apr', 'May', 'June', 'July',
 var monthArrayLong = new Array('January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December');
  
 var defaultDateSeparator = "-";        // common values would be "/" or "."
-var defaultDateFormat = "dmy"    // valid values are "mdy", "dmy", and "ymd"
+var defaultDateFormat = "ymd"    // valid values are "mdy", "dmy", and "ymd"
 var dateSeparator = defaultDateSeparator;
 var dateFormat = defaultDateFormat;
 

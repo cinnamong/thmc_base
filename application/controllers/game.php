@@ -38,15 +38,24 @@ class Game extends Controller {
 		// generate table data
 		$this->load->library('table');
 		$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('Game ID', '상대팀', '날짜', '시간', '구장', '날씨', '온도', '홈/어웨이','승패','승점','RS','RA', 'Diff','');
+		$this->table->set_heading('Game ID', '상대팀', '날짜', '시간', '구장', '날씨', '온도', '홈/어웨이','승패','승점','득점(RS)','실점(RA)', '득실차(Diff)','');
 		$i = 0 + $offset;
+		$data['total_rs'] = 0; $data['total_ra'] = 0; $data['total_point'] = 0; $data['total_diff'] = 0;
 		foreach ($games as $game){
 			$this->table->add_row(++$i, $game->opponent, $game->date, $game->time, $game->ballpark, $game->weather, $game->temperature, $game->field == 'Visitor'? '어웨이':'홈', $game->result == 'W'? '승': ($game->result == 'L'? '패':'무'), $game->point, $game->rs, $game->ra, $game->diff,
 				anchor('game/view/'.$game->id,'view',array('class'=>'view')).' '.
 				anchor('game/update/'.$game->id,'update',array('class'=>'update')).' '.
 				anchor('game/delete/'.$game->id,'delete',array('class'=>'delete','onclick'=>"return confirm('Are you sure want to delete this game?')"))
 			);
+			$data['total_rs'] = $data['total_rs'] + $game->rs;
+			$data['total_ra'] = $data['total_ra'] + $game->ra;
+			$data['total_point'] = $data['total_point'] + $game->point;
 		}
+			$data['total_diff'] = $data['total_rs'] - $data['total_ra'];
+			
+			$data['total_game_count'] = $this->gameModel->count_all();
+			$data['rs_game'] = $data['total_rs'] / $data['total_game_count'];
+			$data['ra_game'] = $data['total_ra'] / $data['total_game_count'];
 		$data['table'] = $this->table->generate();
 		
 		// load view
@@ -118,9 +127,9 @@ class Game extends Controller {
 		$data['game'] = $this->gameModel->get_by_id($id)->row();
 		
 		//get total rs & ra & point
-		$total_rs = $this->gameModel->get_total_rs();
-		$total_ra = $this->gameModel->get_total_ra();
-		$total_point = $this->gameModel->get_total_point();
+		//$total_rs = $this->gameModel->get_total_rs();
+		//$total_ra = $this->gameModel->get_total_ra();
+		//$total_point = $this->gameModel->get_total_point();
 		
 		// load view
 		$this->load->view('gameView', $data);
@@ -232,7 +241,7 @@ class Game extends Controller {
 	// date_validation callback
 	function valid_date($str)
 	{
-		if(!ereg("^(0[1-9]|1[0-9]|2[0-9]|3[01])-(0[1-9]|1[012])-([0-9]{4})$", $str))
+		if(!ereg("^([0-9]{4})-(0[1-9]|1[012])-(0[012]|1[0-9])$", $str))
 		{
 			$this->validation->set_message('valid_date', 'date format is not valid. dd-mm-yyyy');
 			return false;
