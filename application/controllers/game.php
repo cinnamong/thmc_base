@@ -38,10 +38,10 @@ class Game extends Controller {
 		// generate table data
 		$this->load->library('table');
 		$this->table->set_empty("&nbsp;");
-		$this->table->set_heading('Game ID', '상대팀', '날짜', '시간', '구장', '날씨', '온도', '홈/어웨이','승패','승점','');
+		$this->table->set_heading('Game ID', '상대팀', '날짜', '시간', '구장', '날씨', '온도', '홈/어웨이','승패','승점','RS','RA', 'Diff','');
 		$i = 0 + $offset;
 		foreach ($games as $game){
-			$this->table->add_row(++$i, $game->opponent, $game->date, $game->time, $game->ballpark, $game->weather, $game->temperature, $game->field == 'Visitor'? '어웨이':'홈', $game->result == 'W'? '승': ($game->result == 'L'? '패':'무'), $game->point,
+			$this->table->add_row(++$i, $game->opponent, $game->date, $game->time, $game->ballpark, $game->weather, $game->temperature, $game->field == 'Visitor'? '어웨이':'홈', $game->result == 'W'? '승': ($game->result == 'L'? '패':'무'), $game->point, $game->rs, $game->ra, $game->diff,
 				anchor('game/view/'.$game->id,'view',array('class'=>'view')).' '.
 				anchor('game/update/'.$game->id,'update',array('class'=>'update')).' '.
 				anchor('game/delete/'.$game->id,'delete',array('class'=>'delete','onclick'=>"return confirm('Are you sure want to delete this game?')"))
@@ -51,6 +51,7 @@ class Game extends Controller {
 		
 		// load view
 		$this->load->view('gameList', $data);
+		
 	}
 	
 	function add(){
@@ -90,7 +91,10 @@ class Game extends Controller {
 							'temperature' => $this->input->post('temperature'),
 							'field' => $this->input->post('field'),
 							'result' => $this->input->post('result'),
-							'point' => $this->input->post('point'));
+							'point' => $this->input->post('point'),
+							'rs' => $this->input->post('rs'),
+							'ra' => $this->input->post('ra'),
+							'diff' => $this->input->post('diff'));
 			$id = $this->gameModel->save($game);
 			
 			// set form input name="id"
@@ -102,6 +106,7 @@ class Game extends Controller {
 		
 		// load view
 		$this->load->view('gameEdit', $data);
+
 	}
 	
 	function view($id){
@@ -111,6 +116,11 @@ class Game extends Controller {
 		
 		// get game details
 		$data['game'] = $this->gameModel->get_by_id($id)->row();
+		
+		//get total rs & ra & point
+		$total_rs = $this->gameModel->get_total_rs();
+		$total_ra = $this->gameModel->get_total_ra();
+		$total_point = $this->gameModel->get_total_point();
 		
 		// load view
 		$this->load->view('gameView', $data);
@@ -163,7 +173,10 @@ class Game extends Controller {
 							'temperature' => $this->input->post('temperature'),
 							'field' => $this->input->post('field'),
 							'result' => $this->input->post('result'),
-							'point' => $this->input->post('point'));
+							'point' => $this->input->post('point'),
+							'rs' => $this->input->post('rs'),
+							'ra' => $this->input->post('ra'),
+							'diff' => $this->input->post('diff'));
 			$this->gameModel->update($id,$game);
 			
 			// set user message
@@ -194,6 +207,9 @@ class Game extends Controller {
 		$fields['field'] = 'field';
 		$fields['result'] = 'result';
 		$fields['point'] = 'point';
+		$fields['rs'] = 'rs';
+		$fields['ra'] = 'ra';
+		$fields['diff'] = 'diff';
 		
 		$this->validation->set_fields($fields);
 	}
@@ -226,5 +242,6 @@ class Game extends Controller {
 			return true;
 		}
 	}
+		
 }
 ?>

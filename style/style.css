@@ -16,6 +16,10 @@ div.content h1 {
 	width:80%;
 }
 
+div.content div.gamedata table {
+	width:100% !important;
+}
+
 div.content div.data table {
 	border:2px solid #000;
 	background:#fff;

@@ -25,7 +25,8 @@ class GameModel extends Model {
 		$this->db->where('id', $id);
 		return $this->db->get($this->tbl_game);
 	}
-	
+
+
 	function save($game){
 		$this->db->insert($this->tbl_game, $game);
 		return $this->db->insert_id();

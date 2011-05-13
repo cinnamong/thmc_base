@@ -53,10 +53,22 @@
 				<td valign="top">승점</td>
 				<td><?php echo $game->point; ?></td>
 			</tr>
-			
+			<tr>
+				<td valign="top">RS</td>
+				<td><?php echo $game->rs; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">RA</td>
+				<td><?php echo $game->ra; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">Diff</td>
+				<td><?php echo $game->diff; ?></td>
+			</tr>									
 		</table>
 		</div>
 		<br />
+
 		<?php echo $link_back; ?>
 	</div>
 </body>

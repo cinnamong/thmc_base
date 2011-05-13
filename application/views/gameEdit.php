@@ -73,6 +73,21 @@
 				<?php echo $this->validation->point_error; ?></td>
 			</tr>
 			<tr>
+				<td valign="top">RS </td>
+				<td><input type="text" name="rs" class="text" value="<?php echo $this->validation->rs; ?>"/>
+				<?php echo $this->validation->rs_error; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">RA </td>
+				<td><input type="text" name="ra" class="text" value="<?php echo $this->validation->ra; ?>"/>
+				<?php echo $this->validation->ra_error; ?></td>
+			</tr>
+			<tr>
+				<td valign="top">Diff </td>
+				<td><input type="text" name="diff" class="text" value="<?php echo $this->validation->diff; ?>"/>
+				<?php echo $this->validation->diff_error; ?></td>
+			</tr>									
+			<tr>
 				<td>&nbsp;</td>
 				<td><input type="submit" value="Save"/></td>
 			</tr>
