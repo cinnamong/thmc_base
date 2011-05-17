@@ -26,22 +26,6 @@ class LineupModel extends Model {
 		return $this->db->get($this->tbl_lineup);
 	}
 
-	function get_total_rs(){
-		$this->db->select_sum('rs');
-		return $this->db->get('lineup');
-	}
-
-	function get_total_ra(){
-		$this->db->select_sum('ra');
-		$query = $this->db->get('lineup');
-		return $query;
-	}
-
-	function get_total_point(){
-		$this->db->select_sum('point');
-		$query = $this->db->get('lineup');
-		return $query;
-	}
 			
 	function save($lineup){
 		$this->db->insert($this->tbl_lineup, $lineup);

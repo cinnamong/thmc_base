@@ -129,7 +129,7 @@ class Lineup extends Controller {
 		$this->validation->order_no = $lineup->order_no;
 		$this->validation->game_id = $lineup->game_id;
 		$this->validation->opponent = $lineup->opponent;
-		$this->validation->date = date('Y-m-d',strtotime($lineup->date));
+		//$this->validation->date = date('Y-m-d',strtotime($lineup->date));
 		$this->validation->player_id = $lineup->player_id;
 		$this->validation->player_name = $lineup->player_name;
 		//$_POST['position'] = strtoupper($lineup->position);

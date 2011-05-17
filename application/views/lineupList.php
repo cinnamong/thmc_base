@@ -14,26 +14,26 @@
 	</div>
 	<div class="content">
 		<div class="data lineupdata">
-			<h1>2011 Season Summary</h1>
+			<h1>Game Line-up</h1>
 			<table>
 				<tbody>
 				<tr>
-					<th valigh="top">총게임수</th>
-					<th valigh="top">총득점</th>
-					<th valigh="top">총실점</th>
-					<th valigh="top">득실차</th>
-					<th valigh="top">총승점</th>
-					<th valigh="top">게임당득점</th>
-					<th valigh="top">게임당실점</th>
+					<th valigh="top">id</th>
+					<th valigh="top">순번</th>
+					<th valigh="top">선수이름</th>
+					<th valigh="top">백넘버</th>
+					<th valigh="top">포지션</th>
+					<th valigh="top">상대팀</th>
+					<th valigh="top">날짜</th>
 				</tr>
 				<tr>
-					<td valigh="top"><?php echo $total_lineup_count; ?></td>
-					<td valigh="top"><?php echo $total_rs; ?></td>
-					<td valigh="top"><?php echo $total_ra; ?></td>
-					<td valigh="top"><?php echo $total_diff; ?></td>
-					<td valigh="top"><?php echo $total_point; ?></td>
-					<td valigh="top"><?php echo sprintf("%01.2f", $rs_lineup); ?></td>
-					<td valigh="top"><?php echo sprintf("%01.2f", $ra_lineup); ?></td>					
+					<td valigh="top"><?php echo $id; ?></td>
+					<td valigh="top"><?php echo $order_no; ?></td>
+					<td valigh="top"><?php echo $player_name; ?></td>
+					<td valigh="top"><?php echo $back_no; ?></td>
+					<td valigh="top"><?php echo $position; ?></td>
+					<td valigh="top"><?php echo $opponent; ?></td>
+					<td valigh="top"><?php echo $date; ?></td>					
 				</tr>
 				</tbody>
 			</table>
